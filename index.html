@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>生日快乐 🎂</title>
+  <style>
+
+
+/* 🌈 动态粉色渐变背景 */
+body {
+  animation: pinkbg 12s ease-in-out infinite;
+}
+
+@keyframes pinkbg {
+  0% { background-color: #ffe6f2; }
+  50% { background-color: #ffd6ec; }
+  100% { background-color: #ffe6f2; }
+}
+
+/* ✨ 星空闪烁效果（覆盖在背景最上层） */
+.star {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 2s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* 🎈 气球/爱心漂浮 */
+.float-item {
+  position: fixed;
+  bottom: -50px;
+  font-size: 30px;
+  animation: floatUp 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+}
+
+/* 🌸 樱花飘落 */
+.sakura {
+  position: fixed;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  background-image: url('https://preview.qiantucdn.com/58pic/33/86/59/65858PIC58PIC72c58PICM5ebZG93_PIC2018.png!w1024_new_small_1'); /* 粉色樱花图 */
+  background-size:cover;
+  animation: sakuraFall linear infinite;
+  z-index: 2;
+}
+
+@keyframes sakuraFall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+
+  /* 简洁美观的样式，粉色系 + chiikawa 装饰 */
+  :root {
+    --bg:#fff0f6;
+    --accent:#ff6b9d;
+    --card:#ffffff;
+    --muted:#666;
+  }
+
+#bgm {
+  position: fixed;   /* 固定位置，不会随页面滚动 */
+  bottom: 200px;      /* 距离底部 20px */
+  right: 320px;       /* 距离右边 20px */
+  z-index: 9999;     /* 确保在最上层显示 */
+  opacity: 0.9;      /* 半透明一点更柔和 */
+}
+
+
+
+  *{box-sizing:border-box}
+
+  body {
+
+    margin:0;
+    font-family:"Microsoft YaHei",Arial,sans-serif;
+
+    /* 🎨 背景层：粉色渐变 + 两张chiikawa人物 */
+    background:
+      url('https://c-ssl.dtstatic.com/uploads/blog/202307/26/P5SyJyDbfbjoAvp.thumb.1000_0.jpg') no-repeat left 20px bottom 20px,   /* 左下角chiikawa */
+      url('https://q6.itc.cn/q_70/images03/20250321/1b87317d21d242aabe36ad4bd8d50995.png') no-repeat right top,    /* 右上角chiikawa */
+      url('https://q6.itc.cn/q_70/images03/20240913/9292b43810d44203bedfc0a0c1c2b438.gif') no-repeat right 20px bottom 20px,    /* 右上角chiikawa */
+      url('wenwen.jpg') no-repeat left 20px top 20px,    /* 右上角chiikawa */
+      linear-gradient(180deg, #ffe6f2 0%, #ffd6ec 100%);
+    background-size: 200px, 260px, 200px, 180px, cover;  /* 分别控制两张人物和背景的大小 */
+    background-attachment: fixed;
+    
+    color:#222;
+  }
+
+  .wrap {
+    max-width:900px;
+    margin:28px auto;
+    padding:20px;
+    background-color:rgba(255,255,255,0.85); /* 半透明白底让文字更清晰 */
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  header {display:flex;align-items:center;gap:16px}
+  .cake{font-size:44px;animation:floaty 3s ease-in-out infinite}
+  h1{margin:0;font-size:28px}
+  p.lead{color:var(--muted);margin:6px 0 18px}
+
+  .hero{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+  .bigmsg{font-size:20px;margin:8px 0 14px}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+  .card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 3px 10px rgba(0,0,0,0.04)}
+  .from{font-weight:700;color:var(--accent);font-size:13px}
+  .time{font-size:12px;color:#999;margin-top:6px}
+  footer{margin-top:18px;text-align:center;color:#999;font-size:13px}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;margin-top:10px}
+
+  /* 小动画 */
+  @keyframes floaty {
+    0%{transform:translateY(0)}
+    50%{transform:translateY(-6px)}
+    100%{transform:translateY(0)}
+  }
+
+  /* 移动端适配 */
+  @media (max-width:480px){
+    .wrap{padding:12px}
+    .cake{font-size:38px}
+    h1{font-size:20px}
+    body{
+      background-size: 140px, 120px, cover; /* 在手机上缩小人物图 */
+    }
+  }
+
+/* 🌸 弹出动画样式 */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+  padding: 20px 30px;
+  text-align: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.popup-img {
+  width: 120px;
+  animation: floaty 3s ease-in-out infinite;
+}
+
+.popup-text {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #ff6b9d;
+  font-weight: bold;
+}
+
+/* 小浮动动画 */
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+/* 🌟 鼠标拖尾光点 */
+.trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,182,193,0.8);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: fadeTrail 0.8s ease-out forwards;
+  z-index: 99999;
+}
+
+@keyframes fadeTrail {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0); }
+}
+
+/* 💬 点击生成祝福气泡 */
+.bubble {
+  position: fixed;
+  font-size: 16px;
+  color: #ff6b9d;
+  animation: floatUp 1.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100px); opacity: 0; }
+}
+
+/* 🎆 烟花粒子 */
+.firework {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.9;
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div id="countdown-screen" style="
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(255,240,245,0.95);
+  z-index: 99999;
+  display:flex; justify-content:center; align-items:center; flex-direction:column;
+  font-size: 50px; color:#ff6b9d; font-weight:bold;">
+  
+  <div id="count-text">5</div>
+  <div style="font-size:22px;margin-top:15px;color:#ff8bbd;">倒计时开始:) 🎁</div>
+</div>
+
+
+
+
+
+
+<audio id="bgm" src="957.mp3" loop controls></audio>
+
+
+
+<!-- ✨ 弹出欢迎动画 -->
+<div class="popup" id="popup">
+  <img src="https://img1.baidu.com/it/u=3326125793,3139255540&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="chiikawa" class="popup-img">
+  <div class="popup-text">🎂 抓拍今日寿星雯雯！愿你笑容比今天的蛋糕更甜 💖</div>
+</div>
+
+
+  <div class="wrap">
+    <header>
+      <div class="cake">🎂</div>
+      <div>
+        <h1 id="title">给 最最可爱的雯雯 的生日祝福——Jak夕醉</h1>
+        <p class="lead">欢迎来到祝福墙 —— 在下面你会看到一条条暖心的祝福。</p>
+      </div>
+    </header>
+
+    <div class="hero" id="hero">
+      <div class="bigmsg" id="bigmsg">亲爱的 雯雯，生日快乐！愿你永远没有烦恼、常伴笑容，少点眼泪，还有一直和Chiikawa一样可可爱爱(*╹▽╹*) ✨</div>
+      <a class="btn" href="#wall" onclick="document.getElementById('wall').scrollIntoView({behavior:'smooth'})">查看所有祝福</a>
+
+      <div id="wall" style="margin-top:16px;">
+        <div class="gallery" id="messages">
+          <!-- 下面是示例祝福，你可以修改或删除这些条目 -->
+          <div class="card"><div class="from">昨日</div><div>烦恼尽数消散！</div><div class="time">2025-12-20</div></div>
+          <div class="card"><div class="from">今日</div><div>快乐相随，生日快乐！～</div><div class="time">2025-12-21</div></div>
+          <div class="card"><div class="from">明日</div><div>始终记得此刻的欢乐^^</div><div class="time">——</div></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div></div>
+    </footer>
+  </div>
+
+
+<script>
+const music=document.getElementById('bgm');
+music.volume=0.08;
+/* ---------------- 统一脚本：气球、樱花、倒计时、弹窗与音乐 ------------------ */
+
+/* 先确保弹窗在初始时隐藏（页面 CSS 已有 .popup，但我们也用 display:none 更保险） */
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popup');
+  if (popup) popup.style.display = 'none';
+});
+
+/* ---------------- 飘浮气球/爱心 ---------------- */
+(function startFloatItems(){
+  setInterval(() => {
+    const item = document.createElement("div");
+    item.className = "float-item";
+    item.innerText = Math.random() > 0.5 ? "🎈" : "💗";
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = 4 + Math.random() * 4 + "s";
+    document.body.appendChild(item);
+    // 移除，防止 DOM 泄露
+    setTimeout(() => item.remove(), 9000);
+  }, 800);
+})();
+
+/* ---------------- 樱花飘落 ---------------- */
+(function startSakura(){
+  setInterval(() => {
+    const sakura = document.createElement("div");
+    sakura.className = "sakura";
+    sakura.style.left = Math.random() * 100 + "vw";
+    sakura.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(sakura);
+    setTimeout(() => sakura.remove(), 12000);
+  }, 400);
+})();
+
+/* ---------------- 星光（随机生成些小星星并淡入淡出） ---------------- */
+(function startStars(){
+  const starCount = 18;
+  for(let i=0;i<starCount;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    // 随机位置和延迟
+    s.style.left = (Math.random()*100) + 'vw';
+    s.style.top = (Math.random()*80) + 'vh';
+    s.style.animationDelay = (Math.random()*2) + 's';
+    s.style.width = (2 + Math.random()*4) + 'px';
+    s.style.height = s.style.width;
+    document.body.appendChild(s);
+  }
+})();
+
+/* ------------- 弹窗 + 音乐 显示函数（只由倒计时触发） ------------- */
+function showPopupAndMusic() {
+  const popup = document.getElementById('popup');
+  const music = document.getElementById('bgm');
+
+  if (!popup) return;
+  
+  if(music){
+    music.volume=0.08;
+  }
+
+  // 先确保 display:block（它可能最初被设置为 none）
+  popup.style.display = 'block';
+
+  // 小延迟再加 .show 让过渡更自然
+  setTimeout(() => {
+    popup.classList.add('show');
+    // 尝试播放音乐（若被浏览器阻止，会在用户交互后播放）
+    if (music) {
+      music.volume=0.08;
+      music.play().catch(() => {
+        // 等待用户交互播放（我们在页面上添加一次性点击触发）
+        document.body.addEventListener('click', function oncePlay(){
+          music.play().catch(()=>{});
+          document.body.removeEventListener('click', oncePlay);
+        });
+      });
+    }
+  }, 300);
+
+  // 3 秒后淡出
+  setTimeout(() => {
+    popup.classList.add('hide');
+  }, 3500);
+
+  // 4.5s 后彻底隐藏
+  setTimeout(() => {
+    popup.style.display = 'none';
+    popup.classList.remove('show', 'hide');
+  }, 4500);
+}
+
+/* -------------------- 倒计时逻辑（只保留这一份） --------------------- */
+/* 确保你的页面里有 id="count-text" 和 id="countdown-screen" 的元素（你的 HTML 已有） */
+
+(function startCountdown(){
+  // 初始次数（如果需要从 5 开始，保持 5）
+  let count = 5;
+  const countText = document.getElementById("count-text");
+  const countdown = document.getElementById("countdown-screen");
+
+  if (!countText || !countdown) {
+    // 找不到倒计时元素则直接显示弹窗
+    showPopupAndMusic();
+    return;
+  }
+
+  // 初始化显示
+  countText.innerText = count;
+
+  const timer = setInterval(() => {
+    count--;
+    if (count <= 0) {
+      clearInterval(timer);
+
+      // 倒计时淡出
+      countdown.style.transition = "opacity 0.8s ease";
+      countdown.style.opacity = 0;
+
+      // 等淡出动画完成后移除倒计时元素并触发弹窗/音乐
+      setTimeout(() => {
+        if (countdown && countdown.parentNode) countdown.parentNode.removeChild(countdown);
+        showPopupAndMusic();
+      }, 900);
+      return;
+    }
+    countText.innerText = count;
+  }, 1000);
+})();
+
+/* --------------- 额外：保证页面首次点击可以启动音乐（保险做法） --------------- */
+(function ensureClickToPlay(){
+  const music = document.getElementById('bgm');
+  if (!music) return;
+  // 只在用户未交互且播放未开始时，等待一次点击触发
+  let started = false;
+  function tryPlay() {
+    if (started) return;
+    music.play().then(()=>{ started = true; }).catch(()=>{ /* 被阻止，等待用户交互 */ });
+  }
+  // 在 load 后尝试一次（多数浏览器仍会被阻止）
+  window.addEventListener('load', tryPlay);
+  // 然后监听第一次点击以确保播放
+  document.body.addEventListener('click', function once(){
+    tryPlay();
+    document.body.removeEventListener('click', once);
+  });
+})();
+
+// 🐭 鼠标拖尾光点效果
+document.addEventListener('mousemove', function(e) {
+  const dot = document.createElement('div');
+  dot.className = 'trail';
+  dot.style.left = e.pageX + 'px';
+  dot.style.top = e.pageY + 'px';
+  document.body.appendChild(dot);
+  setTimeout(() => dot.remove(), 800); // 0.8s后消失
+});
+
+// 💖 点击生成随机祝福气泡
+const blessings = ["生日快乐！🎂", "永远可爱💕", "笑口常开😊", "天天开心✨", "心想事成🎁", "好运常在🍀"];
+document.addEventListener('click', function(e) {
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerText = blessings[Math.floor(Math.random() * blessings.length)];
+  bubble.style.left = e.pageX + 'px';
+  bubble.style.top = e.pageY + 'px';
+  document.body.appendChild(bubble);
+  setTimeout(() => bubble.remove(), 1500);
+});
+// 🎆 点击烟花特效
+function createFirework(x, y) {
+  const colors = ['#ff6b9d', '#ffd6ec', '#fff7f0', '#ffb6c1', '#ff85a2'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'firework';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(p);
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 80 + 30;
+    const tx = Math.cos(angle) * distance;
+    const ty = Math.sin(angle) * distance;
+
+    p.style.left = x + 'px';
+    p.style.top = y + 'px';
+    p.animate([
+      { transform: `translate(0,0) scale(1)`, opacity: 1 },
+      { transform: `translate(${tx}px, ${ty}px) scale(0.5)`, opacity: 0 }
+    ], { duration: 1200, easing: 'ease-out' });
+
+    setTimeout(() => p.remove(), 1200);
+  }
+}
+
+// 💥 点击触发烟花
+document.addEventListener('click', (e) => {
+  createFirework(e.pageX, e.pageY);
+});
+
+</script>
+
+</body>
+</html>
